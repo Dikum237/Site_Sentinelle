@@ -1,0 +1,113 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %}Login{% endblock title %}
+
+
+<!--Navbar-->
+{% block navbar %} login-page{% endblock navbar %}
+{% block nav-content %}
+<i class="fas fa-key  " style="color: #ff6219;"></i>&nbsp;&nbsp; <strong style="color: #ff6219;"> LOGIN PAGE</strong>
+{% endblock nav-content %}
+
+
+
+
+
+<!-- Page Content -->
+{% block content %}
+
+<br>
+<!--<div class="container card p-3 border-dark mt-5" style="width: 35%; background-color:#e8f6e9;">-->
+    <div class="container mt-3" style="width: 95%; font-size: 14px; background-color:#e7814e; border-radius: 2%; border: 3px solid #935d33 ">
+
+         <!--Error message from backend(from forms.py)-->
+               {% if form.errors %}
+
+                    <div class="alert alert-danger alert-dismissible fade show text-center{{ message.tags }}" role="alert">
+                      <strong>Enter Your Data Correctly.</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+               {% endif %}
+               <br>  <br> 
+
+            
+            
+         <!--Title-->
+            <section class="vh-100" style="background-color: #f4f8f4; border-radius:  1rem ; border: 2px solid black;">
+
+
+               <br>
+               <!-- <div class="container py-5 h-100">-->
+                  <div class="row d-flex justify-content-center align-items-center h-90">
+                    <div class="col col-xl-10">
+                      <div class="card" style="border-radius: 1rem; border: 2px solid #935d33;">
+                        
+                       
+                        <div class="row g-0">
+                          <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <br><br><br> <br><br><br> <br><br>
+                           <img src="{% static 'img/SITE SENTINELLE.png' %}"
+                              alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                          </div>
+                          
+                          <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+              
+                              <form method="POST" autocomplete="off" novalidate>
+                                {% csrf_token %}
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                  <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                  <span class="h1 fw-bold mb-0">Sites Sentinelles</span>
+                                </div>
+              
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+              
+                                <div class="form-outline mb-4">
+                                    {{ form.username|as_crispy_field }}
+                                </div>
+              
+                                <div class="form-outline mb-4">
+                                    {{ form.password|as_crispy_field }}
+                                </div>
+                            
+                                &nbsp;&nbsp;
+                                       
+                                
+                                    
+                                        <div class="row" style="display: inline-block; ">
+                                            <button type="submit" class="btn btn-primary" style="width: 180px;">LOG IN </button>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        
+                                        
+                            
+                                        
+                                        <br><br>
+                                
+                               <!-- <div class="pt-1 mb-4">
+                                    <a href="{% url 'home' %}" class="btn btn-secondary">CANCEL</a>
+                                </div>-->
+              
+                               
+                                <p class="mb-5 pb-lg-2" style="color: #393f81;"><a href="#!"
+                                    style="color: #393f81;"></a></p>
+                                
+                              </form>
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </div>  
+   
+
+        {% endblock content %}
+        

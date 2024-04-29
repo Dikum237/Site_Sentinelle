@@ -1,0 +1,152 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %}Login{% endblock title %}
+
+
+<!--Navbar-->
+{% block navbar %} login-page{% endblock navbar %}
+{% block nav-content %}
+<i class="fas fa-key  " style="color: #ff6219;"></i>&nbsp;&nbsp; <strong style="color: #ff6219;"> LOGIN PAGE</strong>
+{% endblock nav-content %}
+
+
+
+
+
+<!-- Page Content -->
+{% block content %}
+
+<br>
+
+
+    <div class="container mt-3" style="width: 95%; height: 620px; font-size: 14px; background-color:#e7814e; border-radius: 2%; border: 3px solid #935d33 ">
+
+         <!--Error message from backend(from forms.py)-->
+               {% if form.errors %}
+
+                    <div class="alert alert-danger alert-dismissible fade show text-center{{ message.tags }}" role="alert">
+                      <strong>Enter Your Data Correctly.</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+               {% endif %}
+               <br>  <br> 
+
+            
+            
+         <!--Title-->
+            <section class=" container mt-2"  style=" height: 550px;   background-color: #f4f8f4;  border-radius:  1rem ; border: 2px solid black;">
+               <br>
+                  <div class="row d-flex justify-content-center align-items-center h-70">
+                    <div class="col col-xl-10">
+                      <div class="card" style="border-radius: 1rem;  height: 500px;  border: 2px solid #935d33;">
+                                               
+                        <div class="row g-0">
+                          <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <br><br><br> <br><br> 
+
+                            <img src="/static/img/SITE SENTINELLE.png" 
+                              alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                          </div>
+                          
+                          <div class="col-md-6 col-lg-7 d-flex align-items-start">
+                            <div class="card-body p-4 p-lg-5 text-black"  style="overflow: auto;">
+              
+                              <form method="POST" autocomplete="off" novalidate>
+                                {% csrf_token %}
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                  <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                  <span class="h1 fw-bold mb-0">Sites Sentinelles </span>
+                                </div>
+              
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+              
+                                <div class="form-outline mb-4"><strong>
+                                    {{ form.username|as_crispy_field }}
+                               </strong> </div>
+              
+                                <div class="form-outline mb-4"><strong>
+                                    {{ form.password|as_crispy_field }}
+                                </strong></div>
+                            
+                                &nbsp;&nbsp;
+                                       
+                                    
+                                       <!-- <div class="row" style="display: inline-block; ">
+                                            <button type="submit" class="btn btn-primary" style="width: 180px;">LOG IN </button>
+                                        </div>-->
+                                        
+
+                                        <div>
+                                          <style>
+                                            .button {
+                                                padding: 10px 20px;
+                                                border: none;
+                                                border-radius: 5px;
+                                                cursor: pointer;
+                                                font-size: 16px;
+                                                text-transform: uppercase;
+                                                margin: 5px;
+                                                width: 180px;
+                                                display: inline-block;
+                                                transition: background-color 0.3s; /* Ajout d'une transition pour l'effet de survol */
+                                              }
+                                            
+                                              .signin-button {
+                                                background-color: #ff6219;
+                                                color: white;
+                                              }
+                                            
+                                              .signin-button:hover {
+                                                background-color: #cc4e15; /* Couleur plus foncée lors du survol */
+                                              }
+                                            
+                                              .signup-button {
+                                                background-color: #935d33; /* Marron */
+                                                color: white;
+                                              }
+                                            
+                                              .signup-button:hover {
+                                                background-color: #7a4828; /* Couleur plus foncée lors du survol */
+                                              }
+                                          </style>
+                                      
+                                          
+                                      <div style="text-align: center;">
+                                        <button class="button signin-button" style="display: inline-block; margin-right: 10px;"><strong>Signin</strong> &nbsp; <i class="fas fa-sign-in-alt"></i></button>
+                                        <a href="{% url 'registration' %}" class="button signup-button" style="text-decoration: none; display: inline-block;"><strong>Signup </strong>&nbsp; </a>
+
+                                    </div>
+                                    
+                                          
+                                          
+                                          
+                                          
+                                          </div>
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                                        
+                                        <br><br>
+                                
+                              </form>
+                              &nbsp;&nbsp;
+                              
+                              
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </div> 
+       
+   
+
+        {% endblock content %}
+        

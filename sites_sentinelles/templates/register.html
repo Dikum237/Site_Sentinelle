@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!-- Block Title-->
+
+{% block title %} SENTINELLE {% endblock title %}
+
+
+<!--Navbar-->
+{% block navbar %}{% endblock navbar %}
+{% block nav-content %}
+<span class="text-dark "><i class="fas fa-user-plus"></i>&nbsp;&nbsp; New Record </span>
+
+{% endblock nav-content %}
+
+<!--Page Content-->
+{% block content %}
+
+<div class="container" style="width: 100%; font-size: 14px; background-color: #eaeaf3; border-radius: 6px; height: 50px;">
+<nav class=" text-center, navbar-expand-lg ">
+        
+        <a href="{% url 'login' %}" class="btn btn-danger"><i class="fas fa-power-off"></i></a> &nbsp; &nbsp; &nbsp;
+        <a href="{% url 'backend' %}" class="btn btn-secondary"><i class="fas fa-database">&nbsp; Data</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{%url 'home'%}" class="btn btn-info"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard</a>
+      
+  </nav>
+</div>
+<!--Message from registration -->
+
+<div class="mt-5">
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div class=" text-center alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<div class="container mt-3" style="width: 100%; font-size: 14px; ">
+        
+
+        <div class="container mt-3" style="width: 100%; font-size: 14px; ">
+            <div class="container" style="width: 100%; font-size: 14px; background-color: #df6005; border-radius: 6px; height: 20px;">
+                <nav class=" text-center, navbar-expand-lg ">
+                </nav>
+            </div>
+            <br>
+    
+            <div class="container" style="width: 100%; font-size: 14px; background-color: #582900; border-radius: 6px; height: 10px;">
+                <nav class=" text-center, navbar-expand-lg ">
+                </nav>
+            </div>
+            <br>
+       
+        
+                <div class="card p-3 border-dark text-center" 
+                    style="font-size: 35px; font-family:'Trebuchet MS', sans-serif; background-color:#ffffff; color:#df6005 ;">
+                    <strong style="display: inline-block; margin-top: -10px"><img src="/static/img/logo CPC HD CPC (3).png" alt="logo du centre .png" alt="logo du centre pasteur du cameroun" 
+                        style="width: 150px; display: inline-block; vertical-align: middle;"> 
+                    
+                        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; AFROSCREEN  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                        <img src="/static/img/logo-afroscreen.png" alt=" logo  AFROSCREEN " 
+                        style="width: 150px; display: inline-block; margin-top: 10px"> 
+
+                    </strong>  
+
+                </div> 
+                
+                <div class="container" style="width: 100%; font-size: 14px; background-color: #582900; border-radius: 6px; height: 4px;">
+                    <nav class=" text-center, navbar-expand-lg ">
+                    </nav>
+                </div>
+
+    <form    method="POST" id="SENTINELLEForm" enctype="multipart/form-data" class="card p-3 mt-5 solid border-dark" 
+                style="font-size: 18px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                 sans-serif; background-color: #f7e4db;" autocomplete="off" novalidate >
+                        {% csrf_token %}
+                        
+                <!--CARD-->         
+        <div class ="card border-dark p-3" style="background-color:#e8f6e9;">                        
+                    
+                <span class="btn btn-secondary mb-4" style="cursor:default;">
+                        COLLECTE DES INFORMATIONS 
+                </span>
+                  
+                    <!-- {{ form|crispy}}-->
+                <div class ="card border-secondary p-3" style="background-color:#e8f6e9;"> 
+                        
+                            <div class="row"   style="background-color:#cddcf3;">
+                                <div class=" col-md-3" >{{ form.Date|as_crispy_field}}</div>
+                                <div class=" col-md-5" >{{ form.Sites_sentinelles|as_crispy_field}}</div>
+                                <div class=" col-md-4" >{{ form.Type_de_Site|as_crispy_field}}</div>
+                                
+                                <div class=" col-md-4"> {{ form.Groupe_age|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Sexe|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Statut_Vaccinal|as_crispy_field}}</div>
+                                
+                               
+
+                            </div>
+
+                </div>
+                        <br>
+
+                            <!--<hr style="border: 2px solid #05033b;">-->
+                            <span class="btn btn-secondary mb-4" style="cursor:default;"></span>
+
+                <div class ="card border-dark p-3" style="background-color:#e8f6e9;";>  
+    
+                            <div class="row"   style="background-color:#cddcf3;">
+                               
+                                <div class=" col-md-4"> {{ form.IRA|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Hospitalisation|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.nombre_de_Consultation|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Suspect_COVID|as_crispy_field}}</div>
+                                <div class=" col-md-4">{{ form.Cas_Preleves|as_crispy_field}}</div>
+                                <div class=" col-md-4">{{ form.Cas_Positif_Covid|as_crispy_field}}</div>                               
+                                <div class=" col-md-4"> {{ form.Cas_Positif_Influenza|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Cas_Positif_RSV|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Cas_Positif_Autres_virus|as_crispy_field}}</div>
+                                <div class=" col-md-4">{{ form.IRA_Positif_Covid|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Deces_covid|as_crispy_field}}</div>
+                                <div class=" col-md-4"> {{ form.Deces_IRA_covid|as_crispy_field}}</div>
+                                <div class=" col-md-8"> {{ form.Nombre_IRA_Syndrômme_gripaux|as_crispy_field}}</div>
+                                
+                            </div>
+                </div> 
+                
+                    <hr style="border: 2px solid #080809;">
+
+                <div class="row" style="display: inline-block;">
+
+                    {% block buttons %}
+                
+                        <button type="submit" class="btn btn-success mt-3" style="width: 90px;"> Submit </button>
+                        <a href="{% url 'register' %}" class="btn btn-danger mt-3" style="width: 90px;"> Reset </a>
+                        <a href="{% url 'backend' %}" class="btn btn-secondary mt-3" style="width: 90px;"> Cancel </a>
+
+                        {% endblock buttons %}
+                </div>
+
+        </div> 
+
+
+            
+
+
+            
+    </form> 
+        
+        
+
+
+</div> <!-- End // container-->
+<br><br><br>  
+{% endblock %}

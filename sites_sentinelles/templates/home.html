@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %}Login{% endblock title %}
+
+<!--Navbar-->
+
+{% block nav-content %}
+<i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp; <strong> Dashboard </strong>
+{% endblock nav-content %}
+&nbsp;&nbsp;&nbsp;
+
+
+
+<!-- page content-->
+{%block content %}
+
+
+<nav class="navbar navbar-expand-lg  bg-orange py-1 shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+     
+
+    
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'home' %}"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      {% if user.is_authenticated %}
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{ user.username }}
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                              <li><a class="dropdown-item" href="{% url 'change_password' %}"><i class="fas fa-key"></i> Changer le mot de passe</a></li>
+
+                              
+                            
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url 'login' %}">
+                                  <i class="fas fa-user-cog"></i> Gérer le profil
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">
+                                    <i class="fas fa-tachometer-alt"></i> Tableau de bord
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">
+                                    <i class="fas fa-database"></i> Données
+                                </a>
+                            </li>
+                          </ul>
+                      </li>
+                      {% else %}
+                      
+                  
+                    
+                      {% endif %}
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <a href="{% url 'login' %}" class="btn btn-light ml-auto">
+              
+          </a>
+      </div>
+        <a href="{% url 'backend' %}" class="btn btn-secondary"><i class="fas fa-database">&nbsp; Data</i></a>&nbsp;&nbsp;&nbsp;
+        <a href="{%url 'register'%}" class="btn btn-success"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New record</a>&nbsp;&nbsp;&nbsp;
+        <a href="{%url 'home'%}" class="btn btn-info"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{%url 'charger_fichier_excel'%}" class="btn btn-warning"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp;Importer Fichier Excel</a>
+
+
+
+        
+        
+       
+      </div>
+      
+
+      
+    
+    </div>
+  </nav>
+  
+  
+  
+<br>
+    <iframe src="http://192.168.0.152/COVIDALL/"></iframe>
+        
+
+
+
+{% endblock content %}

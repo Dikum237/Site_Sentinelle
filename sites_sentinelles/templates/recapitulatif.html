@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Récapitulatif des Demandes de Création de Compte{% endblock title %}
+
+<!--Navbar-->
+{% block navbar %}login-page{% endblock navbar %}
+{% block nav-content %}
+    <i class="fas fa-form" style="color: #ff6219;"></i>&nbsp;&nbsp; 
+    <strong style="color: #ff6219;">Récapitulatif des Demandes de Création de Compte</strong>
+{% endblock nav-content %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container" style="font-size: 13px;">
+    <!--Button-->
+    <br>
+    &nbsp;&nbsp;&nbsp;
+    <nav class="navbar navbar-expand-lg bg-orange py-1 shadow">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+    <h6 class="card p-2 bg-secondary text-light text-center mb-3">LISTE DES DEMANDES</h6>
+
+    <div class="table-responsive">
+        <table id="bootstrapdatatable" class="table table-striped table-bordered">
+            
+            <thead class="custom-thead">
+           
+                <tr>
+                    <th><strong>Nom</strong></th>
+                    <th><strong>Prénom</strong></th>
+                    <th><strong>Adresse mail</strong></th>
+                    <th><strong>Institution</strong></th>
+                    <th><strong>Pays</strong></th>
+                    <th><strong>Action</strong></th>
+                    <th><strong>Statut</strong></th>
+                </tr>
+            </thead>
+           
+            <tbody>
+    {% for registration in registrations %}
+            <tr>
+                <td>{{ registration.last_name}}</td>
+                <td>{{ registration.first_name}}</td>
+                <td>{{ registration.email}}</td>
+                <td>{{ registration.institution}}</td>
+                <td>{{ registration.country}}</td>
+                
+
+                <style>
+                    .btn-custom {
+                        padding: 0.15rem 0.5rem; /* Ajustez les valeurs de rembourrage selon vos besoins */
+                        font-size: 0.75rem; /* Ajustez la taille de la police selon vos besoins */
+                    }
+                    
+
+                </style>
+                
+                <td>
+                    <a href="{% url 'confirm_and_send_email' registration.id %}" class="btn btn-success btn-sm btn-custom mr-2">
+                        <strong>Confirm</strong> &nbsp; <i class="fas fa-check-circle"></i>
+                    </a>
+                    <a href="{% url 'reject_user_account' registration.id %}" class="btn btn-danger btn-sm btn-custom mr-2">
+                        <strong>Reject &nbsp;</strong> <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                    <a href="{% url 'confirm_and_send_email' registration.id %}" class="btn btn-secondary btn-sm btn-custom">
+                        <strong>Resend email &nbsp;&nbsp;</strong> <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </td>
+            
+                <td>{{ registration.statut}}</td>
+                
+                
+                
+             
+                
+    
+               
+            </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<style>
+    /* Styles pour rendre le texte en gras dans le tableau */
+    .table {
+        font-weight: bold; /* Rendre tout le texte en gras dans le tableau */
+    }
+
+    .table th {
+        font-weight: bold; /* Rendre le texte en gras dans les en-têtes de colonne */
+    }
+
+    .table td {
+        font-weight: bold; /* Rendre le texte en gras dans les cellules de données */
+    }
+</style>
+
+<script>
+    // Code JavaScript pour gérer les mises à jour du statut et les couleurs de fond conditionnelles
+    document.addEventListener('DOMContentLoaded', function() {
+        const statutSelects = document.querySelectorAll('.statut-select');
+        statutSelects.forEach(select => {
+            select.addEventListener('change', function() {
+                const newStatut = this.value;
+                const registrationId = this.dataset.registrationId;
+
+                // Envoyer la mise à jour du statut au serveur via une requête AJAX
+                // Mettre à jour la couleur de fond en fonction du nouveau statut
+                const parentRow = this.closest('tr');
+                parentRow.classList.remove('statut-Approved', 'statut-Rejected', 'statut-Pending');
+                parentRow.classList.add(`statut-${newStatut}`);
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+ <!--  <td>
+                    <select class="form-select form-select-sm" data-registration-id="{{ registration.id }}">
+                        <option value="Approved" {% if registration.statut == 'Approved' %} selected {% endif %}>Approved</option>
+                        <option value="Rejected" {% if registration.statut == 'Rejected' %} selected {% endif %}>Rejected</option>
+                        <option value="Pending" {% if registration.statut == 'Pending' %} selected {% endif %}>Pending</option>
+                    </select>
+                </td>-->
+                
